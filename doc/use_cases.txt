@@ -1,0 +1,9 @@
+- Can Add item
+- Can Remove item
+- Can Update item
+  - Can update item name
+  - Can update item price
+  - Can update item quantity
+- Get number of items
+- Can calculate the current list total price
+- Throw exception when adding item without no price
