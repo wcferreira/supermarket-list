@@ -6,7 +6,10 @@
   (println "setup"))
 
 (defn teardown []
-  (println "teardown"))
+  (println "teardown")
+  (when-not (empty? (deref sm/supermarket))
+    (swap! sm/supermarket pop)
+    (recur)))
 
 (use-fixtures :once
               (fn [tests]
@@ -16,7 +19,7 @@
 
 (deftest test-can-add-item
   (let [item {:name "Rice" :quantity 1 :price 8.99M}]
-    ;(sm/add-item! item)
+    (sm/add-item! item)
     ;(println (deref sm/supermarket))
     (is (= (get (filterv (fn [v] (= (:name item) (:name v))) (deref sm/supermarket)) 0) item))))
 
