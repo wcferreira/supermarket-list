@@ -9,7 +9,12 @@
 
 (defn remove-all!
   []
-  (when-not (empty? @supermarket)
-    (swap! supermarket pop)
-    (recur)))
+  (println "======= remove-all! =======")
+  (println @supermarket)
+  (println "===========================")
+  (reset! supermarket []))
+
+(defn remove-item-by-name!
+  [name]
+  (swap! supermarket #(remove (fn [item] (= (:name item) name)) %)))
 
