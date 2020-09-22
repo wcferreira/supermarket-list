@@ -7,9 +7,7 @@
 
 (defn teardown []
   (println "teardown")
-  (when-not (empty? (deref sm/supermarket))
-    (swap! sm/supermarket pop)
-    (recur)))
+  (sm/remove-all!))
 
 (use-fixtures :once
               (fn [tests]
